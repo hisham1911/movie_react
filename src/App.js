@@ -17,10 +17,14 @@ import Login from "./components/login/Login";
 import JoinUs from "./components/Joinus/JoinUs";
 import SignUp from "./components/signup/SignUp";
 import PageNotFound from "./components/pagenotfound/PageNotFound";
-
+import {useState} from "react";
+import { ThemeProvider } from "./contexts/theme";
 function App() {
+    const [appTheme , setAppTheme] = useState('dark')
     return (
-        <div className="App container">
+        <>
+        <ThemeProvider value={{appTheme,setAppTheme}}>
+        <div className= {`container-fluid bg-${appTheme}`} data-bs-theme ={appTheme}>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -30,6 +34,8 @@ function App() {
             </Routes>
             <Footer />
         </div>
+        </ThemeProvider>
+        </>
     );
 }
 
